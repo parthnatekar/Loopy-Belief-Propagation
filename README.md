@@ -30,5 +30,4 @@ Results on a sample image are shown below:
   <img src="./images/Aishwarya.png"> 
 </p>
 
-
-
+Parallel loopy belief propagation takes about 9s to run on the above image (~ 600 x 600 pixels).
