@@ -20,7 +20,7 @@ In practice, the parallel messages are sent in 4 phases - Right, Left, Up, Down.
 
 For running loopy belief propagation using parallel message passing, run 
 
-`python3 loopy_bp.py -p PATH TO IMAGE/CSV -m MODE sync -n ADD EXTERNAL NOISE (True or False, for testing purposes)`
+`python3 loopy_bp.py -p PATH TO IMAGE/CSV -m MODE (seq or sync) -n ADD EXTERNAL NOISE (True or False, for testing purposes)`
 
 ## Results
 
