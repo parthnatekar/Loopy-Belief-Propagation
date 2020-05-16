@@ -168,57 +168,57 @@ class LBP:
 		else:
 			return(self.image, np.argmax(beta, axis = 2))
 
-# params = {'theta':0.9, 'gamma':0.9}
-# L = LBP(results.image_path, 20, params, results.add_noise)
+params = {'theta':0.9, 'gamma':0.9}
+L = LBP(results.image_path, 20, params, results.add_noise)
 
-# if results.mode == 'seq':
-# 	L.messages_sync()
-# else:
-# 	try:
-# 		image, denoised, noiseless, accuracy = L.messages_sync()
-# 		plt.figure(figsize=(10, 30))
-# 		plt.subplot(1,3,1)
-# 		plt.axis('off')
-# 		plt.title('Original Image')	
-# 		plt.imshow(noiseless, cmap = 'Greys_r')
-# 		plt.subplot(1,3,2)
-# 		plt.axis('off')
-# 		plt.title('Noisy Image, Noise Probability={}'.format(0.1))
-# 		plt.imshow(image, cmap = 'Greys_r')
-# 		plt.subplot(1,3,3)
-# 		plt.axis('off')
-# 		plt.title('Denoised Image \n Accuracy = {0:.2f}, Theta = {1:.2f}, Gamma = {2:.2f}'.format(accuracy, 
-# 			 params['theta'], params['gamma']))
-# 		plt.imshow(denoised, cmap = 'Greys_r')
-# 		plt.show()
-# 	except:
-# 		image, denoised = L.messages_sync()
-# 		plt.figure(figsize=(10, 20))
-# 		plt.subplot(1,2,1)
-# 		plt.axis('off')
-# 		plt.title('Noisy Image')
-# 		plt.imshow(image, cmap = 'Greys_r')
-# 		plt.subplot(1,2,2)
-# 		plt.axis('off')
-# 		plt.title('Denoised Image \n Accuracy = NA, Theta = {}, Gamma = {}'.format(params['theta'], params['gamma']))
-# 		plt.imshow(denoised, cmap = 'Greys_r')
-# 		plt.show()
+if results.mode == 'seq':
+	L.messages_sync()
+else:
+	try:
+		image, denoised, noiseless, accuracy = L.messages_sync()
+		plt.figure(figsize=(10, 30))
+		plt.subplot(1,3,1)
+		plt.axis('off')
+		plt.title('Original Image')	
+		plt.imshow(noiseless, cmap = 'Greys_r')
+		plt.subplot(1,3,2)
+		plt.axis('off')
+		plt.title('Noisy Image, Noise Probability={}'.format(0.1))
+		plt.imshow(image, cmap = 'Greys_r')
+		plt.subplot(1,3,3)
+		plt.axis('off')
+		plt.title('Denoised Image \n Accuracy = {0:.2f}, Theta = {1:.2f}, Gamma = {2:.2f}'.format(accuracy, 
+			 params['theta'], params['gamma']))
+		plt.imshow(denoised, cmap = 'Greys_r')
+		plt.show()
+	except:
+		image, denoised = L.messages_sync()
+		plt.figure(figsize=(10, 20))
+		plt.subplot(1,2,1)
+		plt.axis('off')
+		plt.title('Noisy Image')
+		plt.imshow(image, cmap = 'Greys_r')
+		plt.subplot(1,2,2)
+		plt.axis('off')
+		plt.title('Denoised Image \n Accuracy = NA, Theta = {}, Gamma = {}'.format(params['theta'], params['gamma']))
+		plt.imshow(denoised, cmap = 'Greys_r')
+		plt.show()
 
 
 
-scores = np.zeros((len(np.arange(0, 1, 0.1)), len(np.arange(0, 1, 0.1)), 10))
+# scores = np.zeros((len(np.arange(0, 1, 0.1)), len(np.arange(0, 1, 0.1)), 10))
 
-for ii in range(10):
-	for i, theta in enumerate(list(np.arange(0, 1, 0.1))):
-		for j, gamma in enumerate(list(np.arange(0, 1, 0.1))):
-			params = {'theta':theta, 'gamma':gamma}
-			L = LBP(results.image_path, 20, params, results.add_noise)
-			image, denoised, noiseless, accuracy = L.messages_sync()
-			scores[i, j, ii] = accuracy
+# for ii in range(10):
+# 	for i, theta in enumerate(list(np.arange(0, 1, 0.1))):
+# 		for j, gamma in enumerate(list(np.arange(0, 1, 0.1))):
+# 			params = {'theta':theta, 'gamma':gamma}
+# 			L = LBP(results.image_path, 20, params, results.add_noise)
+# 			image, denoised, noiseless, accuracy = L.messages_sync()
+# 			scores[i, j, ii] = accuracy
 
-print(np.max(np.mean(scores, axis=2)))
-plt.imshow(np.mean(scores, axis=2), cmap='Reds')
-plt.xlabel('Theta')
-plt.ylabel('Gamma')
-plt.colorbar()
-plt.show()
+# print(np.max(np.mean(scores, axis=2)))
+# plt.imshow(np.mean(scores, axis=2), cmap='Reds')
+# plt.xlabel('Theta')
+# plt.ylabel('Gamma')
+# plt.colorbar()
+# plt.show()
