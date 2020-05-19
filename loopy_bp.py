@@ -22,7 +22,12 @@ results = parser.parse_args()
 class LBP:
 
 	def __init__(self, impath, iterations, params, add_noise = False):
-		
+		'''
+		impath: Path to image, may be png or csv
+		iterations: Number of iterations
+		params: Theta and Gamma values
+		add_noise: Whether to add external noise to input image. Useful for testing.
+		'''
 		self.impath = impath
 		self.iterations = iterations
 		self.params = params
@@ -57,6 +62,7 @@ class LBP:
 		self.image = image
 		self.height, self.width = self.image.shape
 
+	# Function to get neighbours. Only used for sequential message passing
 	def get_neighbours(self, idx):
 
 		neighbours = []
@@ -76,6 +82,7 @@ class LBP:
 			pass
 		return(neighbours)
 
+	# Function to perform sequential message passing
 	def messages_seq(self):
 
 		factor_messages = np.ones((self.size**2, self.size**2, 2))
@@ -112,7 +119,7 @@ class LBP:
 		else:
 			return(np.argmax(beta, axis = 2))
 
-
+	# Function to perform synchronous message passing
 	def messages_sync(self):	
 
 		clique_messages = np.ones((self.height, self.width, 2, 4))
@@ -205,6 +212,7 @@ else:
 		plt.show()
 
 
+# Code for performing grid search on Theta and Gamma values
 
 # scores = np.zeros((len(np.arange(0, 1, 0.1)), len(np.arange(0, 1, 0.1)), 10))
 
