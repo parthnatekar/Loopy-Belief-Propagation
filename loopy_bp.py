@@ -36,6 +36,7 @@ class LBP:
 		self.compatibility_outer = np.array([[1.0, self.params['gamma']], [self.params['gamma'], 1.0]])
 		self.preprocess()
 
+	# Function to preprocess image
 	def preprocess(self):
 
 		if self.impath[-3:] == 'png' or self.impath[-3:] == 'jpg':
@@ -52,7 +53,7 @@ class LBP:
 
 		if self.add_noise:
 
-			flip_prob = 0.3
+			flip_prob = 0.1
 			for j in range(image.shape[0]*image.shape[1]):
 				idx = np.unravel_index(j, (image.shape[0], image.shape[1]))
 				thresh = np.random.random_sample()
@@ -190,7 +191,7 @@ else:
 		plt.imshow(noiseless, cmap = 'Greys_r')
 		plt.subplot(1,3,2)
 		plt.axis('off')
-		plt.title('Noisy Image, Noise Probability={}'.format(0.1))
+		plt.title('Noisy Image, Noise Probability={}'.format(0.1))	# Flip Probability is hardcoded for the moment, please change this manually above
 		plt.imshow(image, cmap = 'Greys_r')
 		plt.subplot(1,3,3)
 		plt.axis('off')
